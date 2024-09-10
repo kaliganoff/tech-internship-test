@@ -15,13 +15,12 @@ import OrdersPage from "./pages/OrdersPage/OrdersPage.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/"
-    element={<Root />}>
-      <Route path="allAds" element={<AllAdsPage />}></Route>
-      <Route path="ad" element={<AdPage />}></Route>
-      <Route path="orders" element={<OrdersPage />}></Route>
-    </Route>
-  )
+    <Route path="/" element={<Root />}>
+      <Route path="ads" element={<AllAdsPage />} />
+      <Route path="ads/:id" element={<AdPage />} />
+      <Route path="orders" element={<OrdersPage />} />
+    </Route>,
+  ),
 );
 
 createRoot(document.getElementById("root")!).render(
