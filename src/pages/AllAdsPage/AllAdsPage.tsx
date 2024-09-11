@@ -44,7 +44,7 @@ export default function AllAdsPage() {
   useEffect(() => {
     async function setAdsPaginated() {
       const adsPaginated = await getAdsPaginated(currentPage, itemsPerPage);
-      setAdsOnPage(adsPaginated);
+      setAdsOnPage(searchValue ? adsPaginated.filter((item: Advertisment) => item.name.includes(searchValue)) : adsPaginated);
     }
     setAdsPaginated();
   }, [itemsPerPage, currentPage, needUpdate]);
@@ -83,6 +83,7 @@ export default function AllAdsPage() {
     setAdsOnPage((prev) =>
       prev.filter((item) => item.name.includes(searchValue)),
     );
+    setCurrentPage(1);
   }
 
   return (
