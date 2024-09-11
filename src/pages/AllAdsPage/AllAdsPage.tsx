@@ -2,16 +2,21 @@ import { useEffect, useState } from "react";
 import getAllAds from "../../services/getAllAds";
 import { Advertisment } from "../../types/types";
 import AdCard from "../../components/AdCard/AdCard";
-import { Box, Button, Select, Modal,
+import {
+  Box,
+  Button,
+  Select,
+  Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, 
+  ModalCloseButton,
   useDisclosure,
   Input,
-  Text} from "@chakra-ui/react";
+  Text,
+} from "@chakra-ui/react";
 import getAdsPaginated from "../../services/getAdsPaginated";
 import createAd from "../../services/createAd";
 
@@ -21,11 +26,12 @@ export default function AllAdsPage() {
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [pictureModal, setPictureModal] = useState('');
-  const [nameModal, setNameModal] = useState('');
-  const [descriptionModal, setDescriptionModal] = useState('');
-  const [priceModal, setPriceModal] = useState('');
+  const [pictureModal, setPictureModal] = useState("");
+  const [nameModal, setNameModal] = useState("");
+  const [descriptionModal, setDescriptionModal] = useState("");
+  const [priceModal, setPriceModal] = useState("");
   const [needUpdate, setNeedUpdate] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     async function setAllAds() {
@@ -41,9 +47,8 @@ export default function AllAdsPage() {
       setAdsOnPage(adsPaginated);
     }
     setAdsPaginated();
-    }, [itemsPerPage, currentPage, needUpdate]);
+  }, [itemsPerPage, currentPage, needUpdate]);
 
-    
   const renderPagination = () => {
     const pages = [];
     const totalPages = Math.ceil(ads.length / itemsPerPage);
@@ -66,20 +71,38 @@ export default function AllAdsPage() {
 
   function HandleCreateAd() {
     createAd(pictureModal, nameModal, descriptionModal, priceModal);
-    setPictureModal('');
-    setNameModal('');
-    setDescriptionModal('');
-    setPriceModal('');
-    setNeedUpdate(prev => !prev);
+    setPictureModal("");
+    setNameModal("");
+    setDescriptionModal("");
+    setPriceModal("");
+    setNeedUpdate((prev) => !prev);
+  }
+
+  function HandleSearch() {
+    setAds((prev) => prev.filter((item) => item.name.includes(searchValue)));
+    setAdsOnPage((prev) =>
+      prev.filter((item) => item.name.includes(searchValue)),
+    );
   }
 
   return (
     <Box>
+      <Input
+        value={searchValue}
+        onChange={(e) => {
+          setNeedUpdate((prev) => !prev);
+          setSearchValue(e.target.value);
+        }}
+      ></Input>
+      <Button onClick={HandleSearch}>Искать</Button>
       {adsOnPage.map((ad) => (
         <AdCard ad={ad} />
       ))}
       {renderPagination()}
-      <Select placeholder="Количество объявлений на странице" onChange={(e) => setItemsPerPage(+e.target.value)}>
+      <Select
+        placeholder="Количество объявлений на странице"
+        onChange={(e) => setItemsPerPage(+e.target.value)}
+      >
         <option value="5">5</option>
         <option value="6">6</option>
         <option value="7">7</option>
@@ -95,20 +118,34 @@ export default function AllAdsPage() {
           <ModalCloseButton />
           <ModalBody>
             <Text>Картинка:</Text>
-            <Input value={pictureModal} onChange={(e) => setPictureModal(e.target.value)}></Input>
+            <Input
+              value={pictureModal}
+              onChange={(e) => setPictureModal(e.target.value)}
+            ></Input>
             <Text>Название:</Text>
-            <Input value={nameModal} onChange={(e) => setNameModal(e.target.value)}></Input>
+            <Input
+              value={nameModal}
+              onChange={(e) => setNameModal(e.target.value)}
+            ></Input>
             <Text>Описание:</Text>
-            <Input value={descriptionModal} onChange={(e) => setDescriptionModal(e.target.value)}></Input>
+            <Input
+              value={descriptionModal}
+              onChange={(e) => setDescriptionModal(e.target.value)}
+            ></Input>
             <Text>Стоимость:</Text>
-            <Input value={priceModal} onChange={(e) => setPriceModal(e.target.value)}></Input>
+            <Input
+              value={priceModal}
+              onChange={(e) => setPriceModal(e.target.value)}
+            ></Input>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button onClick={() => HandleCreateAd()} variant='ghost'>Создать объявление</Button>
+            <Button onClick={() => HandleCreateAd()} variant="ghost">
+              Создать объявление
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
