@@ -1,7 +1,7 @@
 import { endpoint } from "../consts/consts";
 
 export default async function editAd(
-    id: string,
+  id: string | undefined,
   imageUrl: string | undefined,
   name: string,
   description: string | undefined,

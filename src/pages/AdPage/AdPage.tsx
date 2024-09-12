@@ -9,10 +9,10 @@ export default function AdPage() {
   const { id } = useParams<{ id: string | undefined }>();
   const [ad, setAd] = useState<Advertisment>();
   const [editorMode, setEditorMode] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | undefined>('');
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState<string | undefined>('');
-  const [price, setPrice] = useState('');
+  const [imageUrl, setImageUrl] = useState<string | undefined>("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState<string | undefined>("");
+  const [price, setPrice] = useState("");
 
   useEffect(() => {
     async function setSingleAd() {
@@ -21,7 +21,7 @@ export default function AdPage() {
       setImageUrl(ad?.imageUrl);
       setName(ad?.name);
       setPrice(String(ad?.price));
-      setDescription(ad?.description)
+      setDescription(ad?.description);
     }
     setSingleAd();
   }, [id, editorMode]);
@@ -33,19 +33,27 @@ export default function AdPage() {
   return (
     <Box>
       {editorMode ? (
-        <Input
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
+        <Input value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
       ) : (
         <Image boxSize="100px" src={ad?.imageUrl} alt={ad?.name} />
       )}
-      { editorMode ? <Input value={name} onChange={(e) => setName(e.target.value)} /> : <p>{ad?.name}</p>}
-      {editorMode ? <Input value={price} onChange={(e) => setPrice(e.target.value)} /> : <p>Цена: {ad?.price}</p>}
+      {editorMode ? (
+        <Input value={name} onChange={(e) => setName(e.target.value)} />
+      ) : (
+        <p>{ad?.name}</p>
+      )}
+      {editorMode ? (
+        <Input value={price} onChange={(e) => setPrice(e.target.value)} />
+      ) : (
+        <p>Цена: {ad?.price}</p>
+      )}
       <p>Просмотры: {ad?.views}</p>
       <p>Лайки: {ad?.likes}</p>
       {editorMode ? (
-        <Input value={description} onChange={(e) => setDescription(e.target.value)} />
+        <Input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
       ) : (
         <p>{ad?.description}</p>
       )}
