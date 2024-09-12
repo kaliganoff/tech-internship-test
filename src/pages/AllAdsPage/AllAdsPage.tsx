@@ -44,10 +44,16 @@ export default function AllAdsPage() {
   useEffect(() => {
     async function setAdsPaginated() {
       const adsPaginated = await getAdsPaginated(currentPage, itemsPerPage);
-      setAdsOnPage(searchValue ? adsPaginated.filter((item: Advertisment) => item.name.includes(searchValue)) : adsPaginated);
+      setAdsOnPage(
+        searchValue
+          ? adsPaginated.filter((item: Advertisment) =>
+              item.name.includes(searchValue),
+            )
+          : adsPaginated,
+      );
     }
     setAdsPaginated();
-  }, [itemsPerPage, currentPage, needUpdate]);
+  }, [itemsPerPage, currentPage, needUpdate, searchValue]);
 
   const renderPagination = () => {
     const pages = [];
