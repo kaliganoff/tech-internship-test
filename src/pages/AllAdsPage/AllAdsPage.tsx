@@ -103,7 +103,7 @@ export default function AllAdsPage() {
       ></Input>
       <Button onClick={HandleSearch}>Искать</Button>
       {adsOnPage.map((ad) => (
-        <AdCard ad={ad} />
+        <AdCard ad={ad} key={ad.id} />
       ))}
       {renderPagination()}
       <Select

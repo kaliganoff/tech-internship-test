@@ -24,7 +24,7 @@ export default function OrdersPage() {
       <Select onChange={(e) => setFilterStatus(e.target.value)}>
         <option value="">Без фильтра</option>
         {statusNames.map((name) => (
-          <option value={statusNames.indexOf(name)}>{name}</option>
+          <option value={statusNames.indexOf(name)} key={statusNames.indexOf(name)}>{name}</option>
         ))}
       </Select>
       <Select onChange={(e) => setSortStatus(e.target.value)}>
@@ -33,7 +33,7 @@ export default function OrdersPage() {
         <option value="-total">Стоимость ↓</option>
       </Select>
       {orders.map((order: Order) => (
-        <OrderCard order={order} update={setNeedUpdate} />
+        <OrderCard order={order} update={setNeedUpdate} key={order.id} />
       ))}
     </Box>
   );

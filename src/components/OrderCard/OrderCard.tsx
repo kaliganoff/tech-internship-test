@@ -31,7 +31,7 @@ export default function OrderCard({
       <Button onClick={() => setIsHidden((prev) => !prev)}>
         Показать товары
       </Button>
-      {isHidden ? "" : items.map((item) => OrderItemCard(item))}
+      {isHidden ? "" : items.map((item) => <OrderItemCard item={item} key={item.id}/>)}
     </Box>
   );
 }

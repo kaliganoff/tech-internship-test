@@ -2,7 +2,7 @@ import { Box, Image } from "@chakra-ui/react";
 import { OrderItem } from "../../types/types";
 import { Link } from "react-router-dom";
 
-export default function OrderItemCard(item: OrderItem) {
+export default function OrderItemCard({ item } :{ item: OrderItem}) {
   const { id, name, price, views, likes, imageUrl, count } = item;
 
   return (
