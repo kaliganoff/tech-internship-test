@@ -6,6 +6,7 @@ export default async function createAd(
   description: string,
   price: string,
 ) {
+  try {
   fetch(`${endpoint}/advertisements`, {
     method: "POST",
     headers: {
@@ -21,4 +22,7 @@ export default async function createAd(
       description: description,
     }),
   });
+} catch (error) {
+  alert(error);
+}
 }

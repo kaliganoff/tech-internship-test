@@ -7,6 +7,7 @@ export default async function editAd(
   description: string | undefined,
   price: string,
 ) {
+  try {
   fetch(`${endpoint}/advertisements/${id}`, {
     method: "PATCH",
     headers: {
@@ -19,4 +20,7 @@ export default async function editAd(
       description: description,
     }),
   });
+} catch(error) {
+  alert(error);
+}
 }

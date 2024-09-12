@@ -1,6 +1,7 @@
 import { endpoint } from "../consts/consts";
 
 export default async function finishOrder(id: string) {
+  try {
   const response = await fetch(`${endpoint}/orders/${id}`, {
     method: "PATCH",
     headers: {
@@ -13,4 +14,7 @@ export default async function finishOrder(id: string) {
   });
   const orders = await response.json();
   return orders;
+} catch(error) {
+  alert(error)
+}
 }

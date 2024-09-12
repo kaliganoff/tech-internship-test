@@ -2,12 +2,12 @@ import { Box, Image } from "@chakra-ui/react";
 import { OrderItem } from "../../types/types";
 import { Link } from "react-router-dom";
 
-export default function OrderItemCard({ item } :{ item: OrderItem}) {
+export default function OrderItemCard({ item }: { item: OrderItem }) {
   const { id, name, price, views, likes, imageUrl, count } = item;
 
   return (
     <Link to={`/ads/${id}`}>
-      <Box>
+      <Box bgColor={'blanchedalmond'} marginTop={'.5em'} _hover={{filter: 'saturate(30%)'}}>
         <Image boxSize="100px" src={imageUrl} alt={name} />
         <p>{name}</p>
         <p>Цена: {price}</p>

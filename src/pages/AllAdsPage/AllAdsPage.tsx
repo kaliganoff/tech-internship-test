@@ -16,6 +16,7 @@ import {
   useDisclosure,
   Input,
   Text,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import getAdsPaginated from "../../services/getAdsPaginated";
 import createAd from "../../services/createAd";
@@ -93,7 +94,7 @@ export default function AllAdsPage() {
   }
 
   return (
-    <Box>
+    <Box padding={'1em 1em'}>
       <Input
         value={searchValue}
         onChange={(e) => {
@@ -102,9 +103,11 @@ export default function AllAdsPage() {
         }}
       ></Input>
       <Button onClick={HandleSearch}>Искать</Button>
-      {adsOnPage.map((ad) => (
-        <AdCard ad={ad} key={ad.id} />
-      ))}
+      <SimpleGrid gap={'0.5em'} columns={2} padding={'.5em 0'}>
+        {adsOnPage.map((ad) => (
+          <AdCard ad={ad} key={ad.id} />
+        ))}
+      </SimpleGrid>
       {renderPagination()}
       <Select
         placeholder="Количество объявлений на странице"
