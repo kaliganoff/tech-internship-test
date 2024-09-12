@@ -148,7 +148,7 @@ export default function AllAdsPage() {
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+              Закрыть
             </Button>
             <Button onClick={() => HandleCreateAd()} variant="ghost">
               Создать объявление
