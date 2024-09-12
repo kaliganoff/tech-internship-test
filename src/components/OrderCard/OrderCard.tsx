@@ -5,13 +5,19 @@ import OrderItemCard from "../OrderItemCard/OrderItemCard";
 import { statusNames } from "../../consts/consts";
 import finishOrder from "../../services/finishOrder";
 
-export default function OrderCard({ order, update }: { order: Order, update: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function OrderCard({
+  order,
+  update,
+}: {
+  order: Order;
+  update: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const { id, status, createdAt, items, total } = order;
   const [isHidden, setIsHidden] = useState(true);
 
   function HandleFinish() {
     finishOrder(id);
-    update(prev => !prev)
+    update((prev) => !prev);
   }
 
   return (
