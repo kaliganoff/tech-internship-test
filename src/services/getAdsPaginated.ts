@@ -8,6 +8,5 @@ export default async function getAdsPaginated(
     `${endpoint}/advertisements?_start=${(page - 1) * itemsPerPage}&_limit=${itemsPerPage}`,
   );
   const ads = await response.json();
-  console.log(ads);
   return ads;
 }

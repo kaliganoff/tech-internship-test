@@ -12,6 +12,5 @@ export default async function finishOrder(id: string) {
     }),
   });
   const orders = await response.json();
-  console.log(orders);
   return orders;
 }

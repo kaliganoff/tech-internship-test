@@ -35,15 +35,19 @@ export default function AdPage() {
       {editorMode ? (
         <>
           <Text>Картинка:</Text>
-          <Input value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+          <Input
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
         </>
       ) : (
         <Image boxSize="100px" src={ad?.imageUrl} alt={ad?.name} />
       )}
       {editorMode ? (
         <>
-        <Text>Название:</Text>
-        <Input value={name} onChange={(e) => setName(e.target.value)} /></>
+          <Text>Название:</Text>
+          <Input value={name} onChange={(e) => setName(e.target.value)} />
+        </>
       ) : (
         <p>{ad?.name}</p>
       )}
