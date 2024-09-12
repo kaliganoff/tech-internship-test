@@ -21,8 +21,10 @@ export default function OrdersPage() {
     setAllOrders();
   }, [filterStatus, sortStatus, needUpdate]);
 
-  return ( isLoading ? <Spinner /> :
-    <Box padding={'1em 1em'}>
+  return isLoading ? (
+    <Spinner />
+  ) : (
+    <Box padding={"1em 1em"}>
       <Select onChange={(e) => setFilterStatus(e.target.value)}>
         <option value="">Без фильтра</option>
         {statusNames.map((name) => (
@@ -39,7 +41,7 @@ export default function OrdersPage() {
         <option value="total">Стоимость ↑</option>
         <option value="-total">Стоимость ↓</option>
       </Select>
-      <SimpleGrid gap={'0.5em'}>
+      <SimpleGrid gap={"0.5em"}>
         {orders.map((order: Order) => (
           <OrderCard order={order} update={setNeedUpdate} key={order.id} />
         ))}

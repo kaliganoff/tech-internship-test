@@ -31,7 +31,11 @@ export default function AdPage() {
   }
 
   return (
-    <Flex justifyContent={'center'} alignItems={'center'} height={'calc(100vh - 1.7em)'}>
+    <Flex
+      justifyContent={"center"}
+      alignItems={"center"}
+      height={"calc(100vh - 1.7em)"}
+    >
       <Box>
         {editorMode ? (
           <>
@@ -42,7 +46,7 @@ export default function AdPage() {
             />
           </>
         ) : (
-          <Image boxSize={'auto'} src={ad?.imageUrl} alt={ad?.name} />
+          <Image boxSize={"auto"} src={ad?.imageUrl} alt={ad?.name} />
         )}
         {editorMode ? (
           <>
@@ -77,7 +81,9 @@ export default function AdPage() {
         <Button onClick={() => setEditorMode((prev) => !prev)}>
           Редактировать
         </Button>
-        {editorMode && <Button onClick={() => HandleEditAd()}>Сохранить</Button>}
+        {editorMode && (
+          <Button onClick={() => HandleEditAd()}>Сохранить</Button>
+        )}
       </Box>
     </Flex>
   );

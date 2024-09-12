@@ -94,7 +94,7 @@ export default function AllAdsPage() {
   }
 
   return (
-    <Box padding={'1em 1em'}>
+    <Box padding={"1em 1em"}>
       <Input
         value={searchValue}
         onChange={(e) => {
@@ -103,7 +103,7 @@ export default function AllAdsPage() {
         }}
       ></Input>
       <Button onClick={HandleSearch}>Искать</Button>
-      <SimpleGrid gap={'0.5em'} columns={2} padding={'.5em 0'}>
+      <SimpleGrid gap={"0.5em"} columns={2} padding={".5em 0"}>
         {adsOnPage.map((ad) => (
           <AdCard ad={ad} key={ad.id} />
         ))}

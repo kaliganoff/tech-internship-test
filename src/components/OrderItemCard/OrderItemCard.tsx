@@ -7,7 +7,11 @@ export default function OrderItemCard({ item }: { item: OrderItem }) {
 
   return (
     <Link to={`/ads/${id}`}>
-      <Box bgColor={'blanchedalmond'} marginTop={'.5em'} _hover={{filter: 'saturate(30%)'}}>
+      <Box
+        bgColor={"blanchedalmond"}
+        marginTop={".5em"}
+        _hover={{ filter: "saturate(30%)" }}
+      >
         <Image boxSize="100px" src={imageUrl} alt={name} />
         <p>{name}</p>
         <p>Цена: {price}</p>

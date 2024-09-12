@@ -21,13 +21,18 @@ export default function OrderCard({
   }
 
   return (
-    <Box bg={'rosybrown'} border={'1px solid black'} borderRadius={'1%'} padding={'.5em .5em'}>
+    <Box
+      bg={"rosybrown"}
+      border={"1px solid black"}
+      borderRadius={"1%"}
+      padding={".5em .5em"}
+    >
       <p>Номер: {id}</p>
       <p>Количество товаров: {items.length}</p>
       <p>Стоимость: {total}</p>
       <p>Дата создания: {createdAt}</p>
       <p>Статус: {statusNames[status]}</p>
-      <Flex gap={'.5em'}>
+      <Flex gap={".5em"}>
         <Button onClick={() => HandleFinish()}>Завершить</Button>
         <Button onClick={() => setIsHidden((prev) => !prev)}>
           Показать товары
