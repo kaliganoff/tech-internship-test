@@ -8,6 +8,5 @@ export default async function getAllOrders(
     `${endpoint}/orders?status=${status}&_sort=${sortByPrice}`,
   );
   const orders = await response.json();
-  console.log(orders);
   return orders;
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getSingleAd from "../../services/getSingleAd";
 import { Advertisment } from "../../types/types";
-import { Box, Button, Image, Input } from "@chakra-ui/react";
+import { Box, Button, Image, Input, Text } from "@chakra-ui/react";
 import editAd from "../../services/editAd";
 
 export default function AdPage() {
@@ -33,31 +33,46 @@ export default function AdPage() {
   return (
     <Box>
       {editorMode ? (
-        <Input value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+        <>
+          <Text>Картинка:</Text>
+          <Input
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
+        </>
       ) : (
         <Image boxSize="100px" src={ad?.imageUrl} alt={ad?.name} />
       )}
       {editorMode ? (
-        <Input value={name} onChange={(e) => setName(e.target.value)} />
+        <>
+          <Text>Название:</Text>
+          <Input value={name} onChange={(e) => setName(e.target.value)} />
+        </>
       ) : (
         <p>{ad?.name}</p>
       )}
       {editorMode ? (
-        <Input value={price} onChange={(e) => setPrice(e.target.value)} />
+        <>
+          <Text>Цена:</Text>
+          <Input value={price} onChange={(e) => setPrice(e.target.value)} />
+        </>
       ) : (
         <p>Цена: {ad?.price}</p>
       )}
       <p>Просмотры: {ad?.views}</p>
       <p>Лайки: {ad?.likes}</p>
       {editorMode ? (
-        <Input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <>
+          <Text>Описание:</Text>
+          <Input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </>
       ) : (
         <p>{ad?.description}</p>
       )}
-      <p>{ad?.createdAt}</p>
+      <p>Создано: {ad?.createdAt}</p>
       <Button onClick={() => setEditorMode((prev) => !prev)}>
         Редактировать
       </Button>

@@ -9,6 +9,7 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [filterStatus, setFilterStatus] = useState<string>("");
   const [sortStatus, setSortStatus] = useState<string>("");
+  const [needUpdate, setNeedUpdate] = useState(false);
 
   useEffect(() => {
     async function setAllOrders() {
@@ -16,7 +17,7 @@ export default function OrdersPage() {
       setOrders(allOrders);
     }
     setAllOrders();
-  }, [filterStatus, sortStatus]);
+  }, [filterStatus, sortStatus, needUpdate]);
 
   return (
     <Box>
@@ -32,7 +33,7 @@ export default function OrdersPage() {
         <option value="-total">Стоимость ↓</option>
       </Select>
       {orders.map((order: Order) => (
-        <OrderCard order={order} />
+        <OrderCard order={order} update={setNeedUpdate} />
       ))}
     </Box>
   );
