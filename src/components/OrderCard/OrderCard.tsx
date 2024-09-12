@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { Order } from "../../types/types";
 import { useState } from "react";
 import OrderItemCard from "../OrderItemCard/OrderItemCard";
@@ -21,17 +21,26 @@ export default function OrderCard({
   }
 
   return (
-    <Box>
+    <Box
+      bg={"rosybrown"}
+      border={"1px solid black"}
+      borderRadius={"1%"}
+      padding={".5em .5em"}
+    >
       <p>Номер: {id}</p>
       <p>Количество товаров: {items.length}</p>
       <p>Стоимость: {total}</p>
       <p>Дата создания: {createdAt}</p>
       <p>Статус: {statusNames[status]}</p>
-      <Button onClick={() => HandleFinish()}>Завершить</Button>
-      <Button onClick={() => setIsHidden((prev) => !prev)}>
-        Показать товары
-      </Button>
-      {isHidden ? "" : items.map((item) => OrderItemCard(item))}
+      <Flex gap={".5em"}>
+        <Button onClick={() => HandleFinish()}>Завершить</Button>
+        <Button onClick={() => setIsHidden((prev) => !prev)}>
+          Показать товары
+        </Button>
+      </Flex>
+      {isHidden
+        ? ""
+        : items.map((item) => <OrderItemCard item={item} key={item.id} />)}
     </Box>
   );
 }

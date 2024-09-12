@@ -7,7 +7,14 @@ export default function AdCard({ ad }: { ad: Advertisment }) {
 
   return (
     <Link to={`${id}`}>
-      <Box>
+      <Box
+        bg={"blanchedalmond"}
+        border={"1px solid white"}
+        borderRadius={"2%"}
+        padding={".5em .5em"}
+        height={"250px"}
+        _hover={{ filter: "saturate(30%)" }}
+      >
         <Image boxSize="100px" src={imageUrl} alt={name} />
         <p>{name}</p>
         <p>Цена: {price}</p>
