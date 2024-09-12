@@ -3,10 +3,16 @@ import { Order } from "../../types/types";
 import { useState } from "react";
 import OrderItemCard from "../OrderItemCard/OrderItemCard";
 import { statusNames } from "../../consts/consts";
+import finishOrder from "../../services/finishOrder";
 
-export default function OrderCard({ order }: { order: Order }) {
+export default function OrderCard({ order, update }: { order: Order, update: React.Dispatch<React.SetStateAction<boolean>> }) {
   const { id, status, createdAt, items, total } = order;
   const [isHidden, setIsHidden] = useState(true);
+
+  function HandleFinish() {
+    finishOrder(id);
+    update(prev => !prev)
+  }
 
   return (
     <Box>
@@ -15,7 +21,7 @@ export default function OrderCard({ order }: { order: Order }) {
       <p>Стоимость: {total}</p>
       <p>Дата создания: {createdAt}</p>
       <p>Статус: {statusNames[status]}</p>
-      <Button>Завершить</Button>
+      <Button onClick={() => HandleFinish()}>Завершить</Button>
       <Button onClick={() => setIsHidden((prev) => !prev)}>
         Показать товары
       </Button>
